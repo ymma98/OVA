@@ -6,11 +6,13 @@ ymma98@qq.com
 import sympy as sym
 
 
-def get_co_metric(x_expr, y_expr, z_expr,
+def calc_co_metric(x_expr, y_expr, z_expr,
                   r, t, p):
     """
     assuming the new coordinate (r, t, p)
-    g_{ij} = x.diff(xi^i) * x.diff(xi^j)
+    g_{ij} = x.diff(xi^i) * x.diff(xi^j) + \
+             y.diff(xi^i) * y.diff(xi^j) + \
+             z.diff(xi^i) * z.diff(xi^j)
     :param x_expr (sympy expr): expression x = x_expr(r, t, p)
     :param y_expr (sympy expr): expression y = y_expr(r, t, p)
     :param z_expr (sympy expr): expression z = z_expr(r, t, p)
@@ -25,14 +27,16 @@ def get_co_metric(x_expr, y_expr, z_expr,
                            z_expr.diff(coord[i]) * z_expr.diff(coord[j]) ) )
     return co_metric
 
-def get_contra_metric(r_expr, t_expr, p_expr,
+def calc_contra_metric(r_expr, t_expr, p_expr,
                       r, t, p,
                       x=sym.Symbol('x'),
                       y=sym.Symbol('y'),
                       z=sym.Symbol('z')):
     """
     assuming the new coordinate (r, t, p)
-    g^{ij} = xi^i.diff(x^i) * xi^j.diff(x^j)
+    g^{ij} = xi^i.diff(x) * xi^j.diff(x) + \
+             xi^i.diff(y) * xi^j.diff(y) +
+             xi^i.diff(z) * xi^j.diff(z)
     :param r_expr (sympy expr): expression r = r_expr(x, y, z)
     :param t_expr (sympy expr): expression t = t_expr(x, y, z)
     :param p_expr (sympy expr): expression p = p_expr(x, y, z)
@@ -59,24 +63,18 @@ def get_contra_metric(r_expr, t_expr, p_expr,
 
 class CoordinateSystem:
     """
-    defines a orthogonal curvilinear coordinate
-    system representation.
+    defines a orthogonal curvilinear coordinate system
     """
-    def __init__(self, coordinate='Cartesian',
+    def __init__(self,
                  r = sym.Symbol('x'),
                  t = sym.Symbol('y'),
                  p = sym.Symbol('z'),
                  param1=sym.Symbol('R0'),
                  param2=sym.Symbol('epsilon'),
-                 new_co_metric = None
+                 new_co_metric = None,
+                 coordinate='Cartesian'
                  ):
         """
-        :param coordinate: (str) name of the coordinate system
-                         inherent coordinate systems:
-                         'Cartesian'
-                         'Cylindrical'
-                         'Spherical'
-                         'Toroidal' (not completed)
         :param r: (sympy.Symbol) name of the coordinate, xi^1
         :param t: (sympy.Symbol) name of the coordinate, xi^2
         :param p: (sympy.Symbol) name of the coordinate, xi^3
@@ -84,14 +82,20 @@ class CoordinateSystem:
                       only used for special coordinate systems such as the toroidal system
         :param param2: (sympy.Symbol) name of one of parameters of the coordinate system,
                       only used for special coordinate systems such as the toroidal system
-        :param new_co_metric: (sympy.Matrix) user defined contra-variant metrix, 3x3
+        :param new_co_metric: (sympy.Matrix) user defined co-variant metrix, 3x3
+        :param coordinate: (str) name of the coordinate system
+                         inherent coordinate systems:
+                         'Cartesian'
+                         'Cylindrical'
+                         'Spherical'
+                         'Toroidal' (not completed)
         """
-        self.coord = coordinate
         self.r = r
         self.t = t
         self.p = p
         self.param1 = param1
         self.param2 = param2
+        self.coord = coordinate
 
         if not new_co_metric:  # use default coordinate system
             self.use_default_contra_metric()
@@ -105,12 +109,11 @@ class CoordinateSystem:
         self.h1 = sym.sqrt(self.co_metric[0, 0])
         self.h2 = sym.sqrt(self.co_metric[1, 1])
         self.h3 = sym.sqrt(self.co_metric[2, 2])
-        self.h = [self.h1, self.h2, self.h3]
 
     def dot(self, A, B):
         """
-        :param A: (list) 1x3 list (vector) or 3x3 list (tensor)
-        :param B: (list) 1x3 list (vector) or 3x3 list (tensor)
+        :param A: vector (1x3 list) or 2-rank tensor (3x3 list or sym.Matrix)
+        :param B: vector (1x3 list) or 2-rank tensor (3x3 list or sym.Matrix)
         """
         case_a = 'v'
         case_b = 'v'
@@ -222,7 +225,7 @@ class CoordinateSystem:
 
     def curl(self, u):
         """
-        :param u: (list) 3x1 vector
+        :param u: (list) 1x3 vector
         """
         xi_list = [self.r, self.t, self.p]
         h_list = [self.h1, self.h2, self.h3]
@@ -241,8 +244,8 @@ class CoordinateSystem:
 
     def div(self, u):
         """
-        u could be a scalar function or a vector
-        :param u: (list) 1x3 list (vector) or 3x3 list (tensor)
+        u could be a vector or a 2-rank tensor
+        :param u: vector (1x3 list) or 2-rank tensor (3x3 list or sym.Matrix)
         """
         xi_list = [self.r, self.t, self.p]
         h_list = [self.h1, self.h2, self.h3]
@@ -310,14 +313,12 @@ class CoordinateSystem:
 
 
 
-
-
     def levi_civita(self, i, j, k):
         """
-        Levi-Civita symbol, i.e. \epsilon_{ijk} or \epsilon&{ijk}
-        :param i: (int), 0 - 2
-        :param j: (int)  0 - 2
-        :param k: (int)  0 - 2
+        Levi-Civita symbol, i.e. \epsilon_{ijk} or \epsilon^{ijk}
+        :param i: (int), 0 or 1 or 2
+        :param j: (int)  0 or 1 or 2
+        :param k: (int)  0 or 1 or 2
         """
         res = sym.S(0)
         if (i==j or i==k or j==k):
