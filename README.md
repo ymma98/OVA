@@ -33,7 +33,7 @@ output：
 [expr1 * 2, expr2 * 2, expr3 * 2] 
 ```
 
-* Why do not use vectors in the type of`sympy.Array` when doing the curl or other vector anaylses?
+* Why the vectors are not used in the type of `sympy.Array` when doing the curl or other vector anaylses.
 
 
 `Array` in `sympy` is an abbreviation for `ImmutableDenseNDimArray`! The `Array` in `sympy` is immutable, which prevents any modifications in the component level.
