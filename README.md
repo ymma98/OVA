@@ -7,9 +7,9 @@ Two general vector analysis packages GVA [1] and the SymFields [2] have been dev
 
 Usually we want to normalize the basis vectors in orthogal curvilinear coordinates (for example the vector analysis formulas in cylindrical and spherical coordinates as what we usually see in many textbook appendices) and keep the basis vectors unnormalized in non-orthogonal coordinates (It seems meaningless to normalize the basis vectors in non-orthogonal coordinates because the co-variant and contra-variant vectors are still different with each other after the normalization, while the normalization process will make the formula derivation much more tedious). On the other hand, expanding the vector expressions including the 2-rank tensor in the component form is necessary in many senarios, for example the calculations of $\nabla \cdot \mathbf{T}$, $\vec{u} \cdot \mathbf{T}$ and $\vec{u} \cdot \nabla \vec{u}$ in a given coordinate system, and it remains to be enhanced in current packages.
 
-In the OVA, we only perform the symbolic vector analysis for the orthogonal coordinate system. The basis vectors are normalized as we expected, and the package supports some 2-rank tensor calculations that are commonly used (for me). For the vector analysis in the non-normalized coordinate system, I recommand to use the general purpose vector analysis packages.
+In the OVA, we only perform the symbolic vector analysis in the orthogonal coordinate system. The basis vectors are normalized as we expected, and the package supports some 2-rank tensor calculations that are commonly used (for me). For the vector analysis in the non-orthogonal coordinate system, I recommand to use the general purpose vector analysis packages.
 
-The examples can be found in the benchmark/ folder.
+The examples can be found in the `benchmark/` folder.
 
 [1] Qin H *et al.* Symbolic vector analysis in plasma physics[J]. Computer physics communications, 1999, 116(1): 107-120.
 
@@ -47,7 +47,7 @@ output：
 [expr1 * 2, expr2 * 2, expr3 * 2] 
 ```
 
-* Why the vectors are not used in the type of `sympy.Array` when doing the curl or other vector anaylses.
+* Why the vectors are not used in the type of `sympy.Array` when doing the curl or other vector analyses.
 
 
 `Array` in `sympy` is an abbreviation for `ImmutableDenseNDimArray`! The `Array` in `sympy` is immutable, which prevents any modifications in the component level.
