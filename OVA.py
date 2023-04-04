@@ -205,7 +205,8 @@ class CoordinateSystem:
             for i in [0, 1, 2]:
                 for j in [0, 1, 2]:
                     res[i, j] += u[j].diff(xi_list[i]) / h_list[i]
-                    res[i, i] += u[j] / (h_list[i] * h_list[j]) \
+                    if i==j:
+                        res[i, i] += u[j] / (h_list[i] * h_list[j]) \
                                    * h_list[i].diff(xi_list[j])
             for i in [0, 1, 2]:
                 for k in [0, 1, 2]:
