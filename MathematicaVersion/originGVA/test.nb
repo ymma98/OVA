@@ -1,0 +1,466 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17554,        458]
+NotebookOptionsPosition[     13814,        390]
+NotebookOutlinePosition[     14338,        409]
+CellTagsIndexPosition[     14295,        406]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Needs", "[", 
+  RowBox[{
+  "\"\<Calculus`GeneralVectorAnalysis`\>\"", ",", 
+   "\"\<GeneralVectorAnalysis.m\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Begin", "[", "\"\<Calculus`GeneralVectorAnalysis`\>\"", 
+  "]"}]}], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"0e98f833-8627-4490-953c-e88d75c07370"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Jacobian", "shdw", 
+   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"Jacobian\\\\\\\"\\\"}]\\) appears \
+in multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\", \\\",\\\", \
+\\\"\\\\\\\"System`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \\!\
+\\(\\*RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\"}]\\) \
+may shadow or be shadowed by other definitions.\"", 2, 2, 1, 
+   26942216822862554833, "Local", "Calculus`GeneralVectorAnalysis`Jacobian"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"167a928f-46bf-469d-be5b-2c8a4dbddb21"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Grad", "shdw", 
+   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"Grad\\\\\\\"\\\"}]\\) appears in \
+multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\", \\\",\\\", \
+\\\"\\\\\\\"System`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \\!\
+\\(\\*RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\"}]\\) \
+may shadow or be shadowed by other definitions.\"", 2, 2, 2, 
+   26942216822862554833, "Local", "Calculus`GeneralVectorAnalysis`Grad"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"484e7e04-e67d-41cf-b654-6277e277ce18"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Div", "shdw", 
+   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"Div\\\\\\\"\\\"}]\\) appears in \
+multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\", \\\",\\\", \
+\\\"\\\\\\\"System`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \\!\
+\\(\\*RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\"}]\\) \
+may shadow or be shadowed by other definitions.\"", 2, 2, 3, 
+   26942216822862554833, "Local", "Calculus`GeneralVectorAnalysis`Div"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"cdc83ff1-4235-41d1-9990-0f18bae7b1fa"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Curl", "shdw", 
+   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"Curl\\\\\\\"\\\"}]\\) appears in \
+multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\", \\\",\\\", \
+\\\"\\\\\\\"System`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \\!\
+\\(\\*RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\"}]\\) \
+may shadow or be shadowed by other definitions.\"", 2, 2, 4, 
+   26942216822862554833, "Local", "Calculus`GeneralVectorAnalysis`Curl"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"c8e9a899-4608-4cfb-8690-dacf5401178e"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Laplacian", "shdw", 
+   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"Laplacian\\\\\\\"\\\"}]\\) appears \
+in multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\", \\\",\\\", \
+\\\"\\\\\\\"System`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \\!\
+\\(\\*RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\"}]\\) \
+may shadow or be shadowed by other definitions.\"", 2, 2, 5, 
+   26942216822862554833, "Local", "Calculus`GeneralVectorAnalysis`Laplacian"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"c56b1c41-9908-4f21-a427-0e12cb371003"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "UnitVector", "shdw", 
+   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"UnitVector\\\\\\\"\\\"}]\\) appears \
+in multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\", \\\",\\\", \
+\\\"\\\\\\\"System`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \\!\
+\\(\\*RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\"}]\\) \
+may shadow or be shadowed by other definitions.\"", 2, 2, 6, 
+   26942216822862554833, "Local", "Calculus`GeneralVectorAnalysis`UnitVector"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"c30a9ae6-d5e3-4d26-9036-e3e503ab3bf3"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "VectorQ", "shdw", 
+   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"VectorQ\\\\\\\"\\\"}]\\) appears in \
+multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\", \\\",\\\", \
+\\\"\\\\\\\"System`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \\!\
+\\(\\*RowBox[{\\\"\\\\\\\"Calculus`GeneralVectorAnalysis`\\\\\\\"\\\"}]\\) \
+may shadow or be shadowed by other definitions.\"", 2, 2, 7, 
+   26942216822862554833, "Local", "Calculus`GeneralVectorAnalysis`VectorQ"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"87a5d21d-9cf4-4451-acc7-e930f901ee4c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"The Vector Calculus on General Coordinate is loaded \
+in\"\>"], "Print",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"e1a386fc-43a8-4e42-996b-bfc1a6a3d625"],
+
+Cell[BoxData["\<\"Use SetCoordinateSystem[ ]  to set up a coordinate system\"\
+\>"], "Print",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"df5ee21f-b00a-4530-8243-5567d111fa99"],
+
+Cell[BoxData["\<\"The default CoordinateSystem is  None \"\>"], "Print",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"77a212e1-73a0-4464-94f3-5cdd744eb594"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Decrement", "rvalue", 
+   "\"\\!\\(\\*RowBox[{\\\"End\\\"}]\\) is not a variable with a value, so \
+its value cannot be changed.\"", 2, 2, 8, 26942216822862554833, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"bf1baafa-894d-41a6-a540-5489dd2aa0bb"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "PreDecrement", "rvalue", 
+   "\"\\!\\(\\*RowBox[{\\\"End\\\", \\\"--\\\"}]\\) is not a variable with a \
+value, so its value cannot be changed.\"", 2, 2, 9, 26942216822862554833, 
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"321358f9-419d-4fbe-8491-ae3dd198926a"],
+
+Cell[BoxData[
+ RowBox[{"--", 
+  RowBox[{"(", 
+   RowBox[{"End", "--"}], ")"}]}]], "Output",
+ CellLabel->"Out[2]=",ExpressionUUID->"2728dace-45c3-46cf-88df-28305c352a9e"],
+
+Cell[BoxData["\<\"Calculus`GeneralVectorAnalysis`\"\>"], "Output",
+ CellLabel->"Out[3]=",ExpressionUUID->"41472c73-c093-40d7-baba-ebc328b5d9e9"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"basic", " ", "usage"}], "*)"}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"50b66bb1-c711-4e67-8c57-ed6e8cb2a701"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullForm", "/@", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"a", "\[CenterDot]", 
+     RowBox[{"(", 
+      RowBox[{"b", "+", "c"}], ")"}]}], ",", 
+    RowBox[{"\[Del]", "\[Cross]", 
+     RowBox[{"(", 
+      RowBox[{"a", "+", 
+       RowBox[{"a", "\[Cross]", 
+        RowBox[{"(", 
+         RowBox[{"b", "\[Cross]", "c"}], ")"}]}]}], ")"}]}], ",", 
+    RowBox[{"\[Del]", "\[CenterDot]", 
+     RowBox[{"(", 
+      RowBox[{"a", "+", 
+       RowBox[{"b", "\[Cross]", "d"}]}], ")"}]}], ",", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"a", "\[CenterDot]", "\[Del]"}], ")"}], "b"}], ",", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["\[Del]", "2"], "f"}], " ", 
+     RowBox[{"\[Del]", "\[CenterDot]", "a"}]}], ",", 
+    OverscriptBox["a", "^"], ",", 
+    RowBox[{"|", "a", "|"}], ",", 
+    RowBox[{"\[ScriptCapitalJ]", "[", "a", "]"}]}], "}"}]}]], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"d401c2d6-5669-4356-9cd3-070ab7d5949a"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "System`Curl", "novars", 
+   "\"\\!\\(\\*RowBox[{\\\"\[Del]\\\", \\\"\[Cross]\\\", RowBox[{\\\"(\\\", \
+RowBox[{\\\"a\\\", \\\"+\\\", RowBox[{\\\"a\\\", \\\"\[Cross]\\\", RowBox[{\\\
+\"(\\\", RowBox[{\\\"b\\\", \\\"\[Cross]\\\", \\\"c\\\"}], \\\")\\\"}]}]}], \
+\\\")\\\"}]}]\\) cannot be interpreted. In a curl, the del operator requires \
+a subscript with differentiation variables.\"", 2, 5, 10, 
+   26942216822862554833, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[5]:=",ExpressionUUID->"2ec4ddf5-ca2b-40fe-a68e-b5f017257963"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullForm", "/@", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"a", "\[CenterDot]", "b"}], ",", 
+    RowBox[{"a", "\[Cross]", "b"}], ",", 
+    RowBox[{"\[Del]", "f"}], ",", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"a", "\[CenterDot]", "\[Del]"}], ")"}], "b"}], ",", 
+    RowBox[{
+     SuperscriptBox["\[Del]", "2"], "a"}]}], "}"}]}]], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"c7800560-1529-4b24-94d0-a961faabe091"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TagBox[
+    StyleBox[
+     RowBox[{"DotProduct", "[", 
+      RowBox[{"a", ",", "b"}], "]"}],
+     ShowSpecialCharacters->False,
+     ShowStringCharacters->True,
+     NumberMarks->True],
+    FullForm], ",", 
+   TagBox[
+    StyleBox[
+     RowBox[{"CrossProduct", "[", 
+      RowBox[{"a", ",", "b"}], "]"}],
+     ShowSpecialCharacters->False,
+     ShowStringCharacters->True,
+     NumberMarks->True],
+    FullForm], ",", 
+   TagBox[
+    StyleBox[
+     RowBox[{"Grad", "[", "f", "]"}],
+     ShowSpecialCharacters->False,
+     ShowStringCharacters->True,
+     NumberMarks->True],
+    FullForm], ",", 
+   TagBox[
+    StyleBox[
+     RowBox[{"CovariantDerivative", "[", 
+      RowBox[{"a", ",", "b"}], "]"}],
+     ShowSpecialCharacters->False,
+     ShowStringCharacters->True,
+     NumberMarks->True],
+    FullForm], ",", 
+   TagBox[
+    StyleBox[
+     RowBox[{"Laplacian", "[", "a", "]"}],
+     ShowSpecialCharacters->False,
+     ShowStringCharacters->True,
+     NumberMarks->True],
+    FullForm]}], "}"}]], "Output",
+ CellLabel->"Out[5]=",ExpressionUUID->"0d31a7f5-77d4-43d4-9fe2-2a69d150ff73"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullForm", "@", 
+  RowBox[{"(", 
+   RowBox[{"\[Del]", "\[CenterDot]", "a"}], ")"}]}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"7ac3b50d-24ef-4c2f-90c6-51cdea998790"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General", "prebin", 
+   "\"\\!\\(\\*RowBox[{\\\"\[Del]\\\", \\\"\[CenterDot]\\\", \\\"a\\\"}]\\) \
+cannot be interpreted. The prefix operator \
+\\!\\(\\*RowBox[{\\\"\[Del]\\\"}]\\) cannot be combined with the binary \
+operator \\!\\(\\*RowBox[{\\\"\\\\\\\"\[CenterDot]\\\\\\\"\\\"}]\\).\"", 2, 6,
+    11, 26942216822862554833, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[6]:=",ExpressionUUID->"ec33dcfa-1529-4448-82a3-59955e41a6fd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullForm", "@", 
+  RowBox[{"(", 
+   RowBox[{"\[Del]", "\[Cross]", "a"}], ")"}]}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"be87fe47-a1b2-4a8c-ba95-caec80971758"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "System`Curl", "novars", 
+   "\"\\!\\(\\*RowBox[{\\\"\[Del]\\\", \\\"\[Cross]\\\", \\\"a\\\"}]\\) \
+cannot be interpreted. In a curl, the del operator requires a subscript with \
+differentiation variables.\"", 2, 6, 12, 26942216822862554833, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[6]:=",ExpressionUUID->"aaddbadb-f7d7-4c10-9d37-5ff4f102ba5d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Div", "[", 
+   RowBox[{"Curl", "[", "a", "]"}], "]"}], "//", "VectorExpand"}]], "Input",
+ CellLabel->"In[16]:=",ExpressionUUID->"a73e66b9-e498-4d31-8631-102b20b79171"],
+
+Cell[BoxData[
+ RowBox[{"\[Del]", "\[CenterDot]", "(", 
+  RowBox[{"\[Del]", "\[Cross]", "a"}], ")"}]], "Output",
+ CellLabel->"Out[16]=",ExpressionUUID->"63dabf38-c920-4f77-8186-92c2b10dfda7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"End", "[", "]"}]], "Input",
+ CellLabel->"In[17]:=",ExpressionUUID->"e4af5242-f7c0-469d-b240-932510b861b4"],
+
+Cell[BoxData["\<\"Calculus`GeneralVectorAnalysis`\"\>"], "Output",
+ CellLabel->"Out[17]=",ExpressionUUID->"e02a5673-a7d4-4cf4-94c4-0b2b25f03105"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Div", "[", 
+  RowBox[{"Curl", "[", "a", "]"}], "]"}]], "Input",
+ CellLabel->"In[18]:=",ExpressionUUID->"d5c3333a-6b5e-40d1-a134-518796813ad0"],
+
+Cell[BoxData[
+ RowBox[{"\[Del]", "\[CenterDot]", "(", 
+  RowBox[{"\[Del]", "\[Cross]", "a"}], ")"}]], "Output",
+ CellLabel->"Out[18]=",ExpressionUUID->"7ea5af6f-a731-4761-90cc-9488aab09dc8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$Context"], "Input",
+ CellLabel->"In[19]:=",ExpressionUUID->"7c1dfcba-dc11-4ac7-ba35-c952600eb23f"],
+
+Cell[BoxData["\<\"Global`\"\>"], "Output",
+ CellLabel->"Out[19]=",ExpressionUUID->"60c1890d-4449-468a-9dac-ba42dbecc060"]
+}, Open  ]]
+},
+WindowSize->{1904, 981},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+TaggingRules->{
+ "WelcomeScreenSettings" -> {"FEStarting" -> False}, "TryRealOnly" -> False},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 7, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"45ee1b01-f394-4ad5-a566-86e2e979787e"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 463, 11, 102, "Input",ExpressionUUID->"0e98f833-8627-4490-953c-e88d75c07370"],
+Cell[1046, 35, 700, 13, 35, "Message",ExpressionUUID->"167a928f-46bf-469d-be5b-2c8a4dbddb21"],
+Cell[1749, 50, 688, 13, 35, "Message",ExpressionUUID->"484e7e04-e67d-41cf-b654-6277e277ce18"],
+Cell[2440, 65, 685, 13, 35, "Message",ExpressionUUID->"cdc83ff1-4235-41d1-9990-0f18bae7b1fa"],
+Cell[3128, 80, 688, 13, 35, "Message",ExpressionUUID->"c8e9a899-4608-4cfb-8690-dacf5401178e"],
+Cell[3819, 95, 703, 13, 35, "Message",ExpressionUUID->"c56b1c41-9908-4f21-a427-0e12cb371003"],
+Cell[4525, 110, 706, 13, 35, "Message",ExpressionUUID->"c30a9ae6-d5e3-4d26-9036-e3e503ab3bf3"],
+Cell[5234, 125, 697, 13, 35, "Message",ExpressionUUID->"87a5d21d-9cf4-4451-acc7-e930f901ee4c"],
+Cell[CellGroupData[{
+Cell[5956, 142, 194, 4, 34, "Print",ExpressionUUID->"e1a386fc-43a8-4e42-996b-bfc1a6a3d625"],
+Cell[6153, 148, 197, 4, 34, "Print",ExpressionUUID->"df5ee21f-b00a-4530-8243-5567d111fa99"],
+Cell[6353, 154, 176, 3, 34, "Print",ExpressionUUID->"77a212e1-73a0-4464-94f3-5cdd744eb594"]
+}, Open  ]],
+Cell[6544, 160, 350, 8, 35, "Message",ExpressionUUID->"bf1baafa-894d-41a6-a540-5489dd2aa0bb"],
+Cell[6897, 170, 369, 9, 35, "Message",ExpressionUUID->"321358f9-419d-4fbe-8491-ae3dd198926a"],
+Cell[7269, 181, 169, 4, 49, "Output",ExpressionUUID->"2728dace-45c3-46cf-88df-28305c352a9e"],
+Cell[7441, 187, 144, 1, 49, "Output",ExpressionUUID->"41472c73-c093-40d7-baba-ebc328b5d9e9"]
+}, Open  ]],
+Cell[7600, 191, 160, 3, 43, "Input",ExpressionUUID->"50b66bb1-c711-4e67-8c57-ed6e8cb2a701"],
+Cell[CellGroupData[{
+Cell[7785, 198, 957, 27, 48, "Input",ExpressionUUID->"d401c2d6-5669-4356-9cd3-070ab7d5949a"],
+Cell[8745, 227, 609, 12, 35, "Message",ExpressionUUID->"2ec4ddf5-ca2b-40fe-a68e-b5f017257963"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9391, 244, 446, 12, 48, "Input",ExpressionUUID->"c7800560-1529-4b24-94d0-a961faabe091"],
+Cell[9840, 258, 1131, 41, 49, "Output",ExpressionUUID->"0d31a7f5-77d4-43d4-9fe2-2a69d150ff73"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11008, 304, 197, 4, 43, "Input",ExpressionUUID->"7ac3b50d-24ef-4c2f-90c6-51cdea998790"],
+Cell[11208, 310, 513, 11, 35, "Message",ExpressionUUID->"ec33dcfa-1529-4448-82a3-59955e41a6fd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11758, 326, 193, 4, 43, "Input",ExpressionUUID->"be87fe47-a1b2-4a8c-ba95-caec80971758"],
+Cell[11954, 332, 427, 9, 35, "Message",ExpressionUUID->"aaddbadb-f7d7-4c10-9d37-5ff4f102ba5d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12418, 346, 202, 4, 43, "Input",ExpressionUUID->"a73e66b9-e498-4d31-8631-102b20b79171"],
+Cell[12623, 352, 190, 3, 49, "Output",ExpressionUUID->"63dabf38-c920-4f77-8186-92c2b10dfda7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12850, 360, 130, 2, 43, "Input",ExpressionUUID->"e4af5242-f7c0-469d-b240-932510b861b4"],
+Cell[12983, 364, 145, 1, 49, "Output",ExpressionUUID->"e02a5673-a7d4-4cf4-94c4-0b2b25f03105"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13165, 370, 166, 3, 43, "Input",ExpressionUUID->"d5c3333a-6b5e-40d1-a134-518796813ad0"],
+Cell[13334, 375, 190, 3, 49, "Output",ExpressionUUID->"7ea5af6f-a731-4761-90cc-9488aab09dc8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13561, 383, 113, 1, 43, "Input",ExpressionUUID->"7c1dfcba-dc11-4ac7-ba35-c952600eb23f"],
+Cell[13677, 386, 121, 1, 49, "Output",ExpressionUUID->"60c1890d-4449-468a-9dac-ba42dbecc060"]
+}, Open  ]]
+}
+]
+*)
+
