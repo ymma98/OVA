@@ -1,5 +1,4 @@
-# OVA
-Orthogonal curvilinear coordinate Vector Analysis
+**OVA (Orthogonal curvilinear coordinate Vector Analysis)**
 
 # Motivation
 
