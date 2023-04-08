@@ -243,7 +243,7 @@ curl/: MakeBoxes[curl[a_],StandardForm]:=RowBox[{"\[Del]","\[Cross]","(",MakeBox
 
 
 
-(*===Make Notation for==============CovariantDerivative======*)
+(*===Make Notation for==============covariantDerivative======*)
 
 MakeExpression[RowBox[{RowBox[{"(",RowBox[{a_, "\[CenterDot]", "\[Del]"}], ")"}], b_}],StandardForm]:=
 MakeExpression[RowBox[{"covariantDerivative","[",a, ",",b,"]"}],StandardForm] ;
@@ -484,6 +484,7 @@ HoldPattern[curl[grad[f_]]]:=0 /; scalarQ[f] ;
 HoldPattern[div[curl[A_]]]:=0 /; vectorQ[A] ;
 
 
+
 (*==============  Pull the constant out ========================== *)
 HoldPattern[cross[(x_/; NumberQ[x]) A_, B_] ]:= 
 x  cross[A,B] /; (vectorQ[A] && vectorQ[B]) ;
@@ -503,15 +504,20 @@ HoldPattern[div[(x_/; NumberQ[x]) A_]]:=x div[A] /;(vectorQ[A]) ;
 
 HoldPattern[curl[(x_/; NumberQ[x]) A_]]:=x curl[A] /;(vectorQ[A]) ;
 
-HoldPattern[CovariantDerivative[(x_/; NumberQ[x]) A_,B_]]:=
-x CovariantDerivative[A,B] /;(vectorQ[A] && vectorQ[B]);
+HoldPattern[covariantDerivative[(x_/; NumberQ[x]) A_,B_]]:=
+x covariantDerivative[A,B] /;(vectorQ[A] && vectorQ[B]);
 
-HoldPattern[CovariantDerivative[A_,(x_/; NumberQ[x]) B_]]:=
-x CovariantDerivative[A,B] /;(vectorQ[A] && vectorQ[B]);
+HoldPattern[covariantDerivative[A_,(x_/; NumberQ[x]) B_]]:=
+x covariantDerivative[A,B] /;(vectorQ[A] && vectorQ[B]);
 
 SetAttributes[dot, Orderless];
 
 cross[A_,B_]:=-cross[B,A] /; (vectorQ[A] && vectorQ[B] && Order[A,B]==-1);
+
+(* my additional terms *)
+div[f_ A_ B_]:=  dot[A,grad[f]] B + f div[A] B + f covariantDerivative[A,B] /; (scalarQ[f]&& vectorQ[A] && vectorQ[B]);
+div[A_ B_]:= div[A] B + covariantDerivative[A,B]/; (vectorQ[A] && vectorQ[B]);
+
 
 
 vectorExpandDispatch=Dispatch[{
@@ -571,6 +577,8 @@ HoldPattern[grad[f_+g_]]:>grad[f]+grad[g] /; (scalarQ[f] && scalarQ[g]),
 HoldPattern[div[A_+B_]]:>div[A]+div[B] /; (vectorQ[A] && vectorQ[B]),
 
 HoldPattern[curl[A_+B_]]:>curl[A]+curl[B] /; (vectorQ[A] && vectorQ[B])
+
+
 
 
 }];
@@ -745,7 +753,7 @@ vector[tmp]
 ];
 
 
-(* ============ CovariantDerivative[a,b]========*)
+(* ============ covariantDerivative[a,b]========*)
 covariantDerivative[a_,b_]:=
 Module[{tmp, tmp2},
 If[vectorQ[b],
