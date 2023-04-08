@@ -122,6 +122,9 @@ OVA`div::usage=
 OVA`curl::usage=
 "curl[A[c1,c2,c3]] gives the curl of A."
 
+OVA`tensorProduct::usage=
+"tensorProduct[A[c1,c2,c3], B[c1,c2,c3]] gives the tensor AiBj"
+
 OVA`covariantDerivative::usage=
 "covariantDerivative[A[c1,c2,c3],x[c1,c2,c3]] gives the directional
  derivative of x in A direction, 
@@ -607,7 +610,7 @@ Module[{},
 
 (*Unprotect[vectorQ,jacobian];*)
 Unprotect[metric, jacobian, christoffel,u,
-defineVector, dot, cross, grad, div, curl, covariantDerivative, laplacian, absoluteValue,
+defineVector, dot, cross, grad, div, curl, tensorProduct, covariantDerivative, laplacian, absoluteValue,
 unitVector, parallel, parallelUnitVector, perp, perpUnitVector, declareVector,
 declareScalar, vector, vectorQ, scalarQ, vectorExpand, covariantComponent,
 contravariantComponent];
@@ -705,8 +708,11 @@ vector/: Times[q_,vector[a__]] := vector@@Times[q, List@@vector[a] ];
 
 vector/: D[vector[a__],b_]:=vector@@D[List@@vector[a],b];
 
-(* =========== dot[a,b] ============== *)
-dot[a_,b_]:=Sum[a[[1,n]] b[[1,n]],{n,1,3}] ;
+(* =========== dot[a,b] ============\[Equal] my addition *)
+(*dot[a_,b_]:=Sum[a[[1,n]] b[[1,n]],{n,1,3}] ;*)
+dot[a_?vectorQ,b_?vectorQ]:=Sum[a[[1,n]] b[[1,n]],{n,1,3}] ;
+dot[a_?MatrixQ,b_?vectorQ]:=Module[{tmp}, tmp=Table[Sum[a[[i,j]] b[[1,j]],{j,3}],{i,3}]; Return[vector[tmp]] ];
+dot[a_?vectorQ,b_?MatrixQ]:=Module[{tmp}, tmp=Table[Sum[a[[1,i]] b[[i,j]],{i,3}],{j,3}]; Return[vector[tmp]] ];
 
 (* =========== cross[a,b] ======== *)
 cross[a_,b_]:= 
@@ -736,10 +742,19 @@ Return[vector[tmp]]
 ];
 
 
-(* =========== div[a]============*)
-div[a_]:=
+(* =========== div[a]============, my addition*)
+div[a_?vectorQ]:=
 Module[{},
 Sum[D[jacobian[u[1],u[2],u[3]] a[[1,i]] / lame[[i]], u[i]],{i,1,3}] / jacobian[u[1],u[2],u[3]]
+];
+div[a_?MatrixQ]:=
+Module[{tmp1,tmp2,tmp3,tmp4,tmp},
+tmp1 = Table[ Sum[D[a[[i,k]], u[i]]/lame[[i]],{i,3}],{k,3}];
+tmp2=Table[Sum[a[[i,k]]/jacobian[u[1],u[2],u[3]] D[jacobian[u[1],u[2],u[3]]/lame[[i]],u[i]],{i,3}],{k,3}];
+tmp3=Table[Sum[a[[i,k]]/(lame[[i]] lame[[k]]) D[lame[[i]],u[k]],{k,3}],{i,3}];
+tmp4=Table[Sum[ a[[i,i]]/(lame[[i]] lame[[j]]) D[lame[[i]],u[j]] ,{i,3}],{j,3}];
+tmp=tmp1+tmp2+tmp3-tmp4;
+Return[vector[tmp]]
 ];
 
 
@@ -752,6 +767,11 @@ tmp = Table[tmp2[[i]] lame[[i]],{i,3}];
 vector[tmp]
 ];
 
+(* ============ tensorProduct[a,b], my addition ==========*)
+tensorProduct[a_?vectorQ ,b_?vectorQ]:=
+Module[{tmp},
+tmp=Table[a[[1,i]] b[[1,j]],{i,3},{j,3}]
+];
 
 (* ============ covariantDerivative[a,b]========*)
 covariantDerivative[a_,b_]:=
@@ -810,7 +830,7 @@ contravariantComponent[a_,i_]:=a[[1,i]] /; (vectorQ[a]==True && IntegerQ[i]==Tru
 Print[{CoordinateSystem}, " is set up."];
 
 Protect[metric, jacobian, christoffel,u,
-defineVector, dot, cross, grad, div, curl, covariantDerivative, laplacian, absoluteValue,
+defineVector, dot, cross, grad, div, curl, tensorProduct, covariantDerivative, laplacian, absoluteValue,
 unitVector, parallel, parallelUnitVector, perp, perpUnitVector, declareVector,
 declareScalar, vector, vectorQ, scalarQ, vectorExpand, covariantComponent,
 contravariantComponent, about];
