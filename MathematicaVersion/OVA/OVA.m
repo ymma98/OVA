@@ -716,9 +716,8 @@ dot[a_?vectorQ,b_?MatrixQ]:=Module[{tmp}, tmp=Table[Sum[a[[1,i]] b[[i,j]],{i,3}]
 
 (* =========== cross[a,b] ======== *)
 cross[a_,b_]:= 
-Module[{tmp1,tmp},
-tmp1 = Table[Sum[lc[i,j,k] a[[1,i]] / lame[[i]] b[[1,j]] / lame[[j]],{i,1,3}, {j,1,3}],{k,1,3}];
-tmp = Table[tmp1[[i]] /lame[[i]],{i,3}];
+Module[{tmp},
+tmp = Table[Sum[lc[i,j,k] a[[1,i]] b[[1,j]],{i,1,3}, {j,1,3}],{k,1,3}];
 vector[tmp]
 ];
 
